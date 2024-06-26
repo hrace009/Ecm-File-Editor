@@ -7406,11 +7406,11 @@
             this.OpenEcm.Name = "OpenEcm";
             this.OpenEcm.Size = new System.Drawing.Size(610, 23);
             this.OpenEcm.TabIndex = 55;
-            this.OpenEcm.TextBoxFont = new System.Drawing.Font("Segoe UI", 9.85F);
-            this.OpenEcm.TextBoxText = "";
+            //this.OpenEcm.TextBoxFont = new System.Drawing.Font("Segoe UI", 9.85F);
+            //this.OpenEcm.TextBoxText = "";
             this.OpenEcm.Button_Click += new System.EventHandler(this.OpenFile);
-            this.OpenEcm.Button_MouseEnter += new System.EventHandler(this.textBoxWithButton1_Button_MouseEnter);
-            this.OpenEcm.Button_MouseLeave += new System.EventHandler(this.textBoxWithButton1_Button_MouseLeave);
+            //this.OpenEcm.Button_MouseEnter += new System.EventHandler(this.textBoxWithButton1_Button_MouseEnter);
+            //this.OpenEcm.Button_MouseLeave += new System.EventHandler(this.textBoxWithButton1_Button_MouseLeave);
             // 
             // OpenSmd
             // 
@@ -7421,11 +7421,11 @@
             this.OpenSmd.Name = "OpenSmd";
             this.OpenSmd.Size = new System.Drawing.Size(610, 23);
             this.OpenSmd.TabIndex = 57;
-            this.OpenSmd.TextBoxFont = new System.Drawing.Font("Segoe UI", 9.85F);
-            this.OpenSmd.TextBoxText = "";
+            //this.OpenSmd.TextBoxFont = new System.Drawing.Font("Segoe UI", 9.85F);
+            //this.OpenSmd.TextBoxText = "";
             this.OpenSmd.Button_Click += new System.EventHandler(this.OpenSmd_Button_Click);
-            this.OpenSmd.Button_MouseEnter += new System.EventHandler(this.OpenSmd_Button_MouseEnter);
-            this.OpenSmd.Button_MouseLeave += new System.EventHandler(this.OpenSmd_Button_MouseLeave);
+            //this.OpenSmd.Button_MouseEnter += new System.EventHandler(this.OpenSmd_Button_MouseEnter);
+            //this.OpenSmd.Button_MouseLeave += new System.EventHandler(this.OpenSmd_Button_MouseLeave);
             // 
             // ActionsSfxsMenu
             // 

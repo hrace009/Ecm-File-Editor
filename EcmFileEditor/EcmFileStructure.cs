@@ -167,31 +167,31 @@ namespace EcmFileEditor
         public void Save(string path, int Version)
         {
             StreamWriter sw = new StreamWriter(path, false, Encoding.GetEncoding(936));
-            sw.WriteParameter("MOXTVersion", Version);
-            sw.WriteParameter("SkinModelPath", SmdPath);
-            if (Version >= 33) sw.WriteParameter("AutoUpdata", AutoUpdata);
-            if (Version >= 18) sw.WriteParameter("OrgColor", OrgColor);
-            if (Version >= 52) sw.WriteParameter("EmissiveCol", EmissiveCol);
+            sw.Write("MOXTVersion", Version);
+            sw.Write("SkinModelPath", SmdPath);
+            if (Version >= 33) sw.Write("AutoUpdata", AutoUpdata);
+            if (Version >= 18) sw.Write("OrgColor", OrgColor);
+            if (Version >= 52) sw.Write("EmissiveCol", EmissiveCol);
             if (Version >= 21)
             {
-                sw.WriteParameter("SrcBlend", SrcBlend);
-                sw.WriteParameter("DestBlend", DestBlend);
+                sw.Write("SrcBlend", SrcBlend);
+                sw.Write("DestBlend", DestBlend);
             }
             if (Version >= 18)
             {
-                sw.WriteParameter("OuterNum", OuterNum);
+                sw.Write("OuterNum", OuterNum);
                 for (int i = 0; i < Outers.Length; i++)
                 {
-                    sw.WriteParameter("Float", Outers[i]);
+                    sw.Write("Float", Outers[i]);
                 }
             }
             if (Version >= 28)
             {
-                sw.WriteParameter("NewScale", NewScale);
+                sw.Write("NewScale", NewScale);
             }
             if (Version >= 18)
             {
-                sw.WriteParameter("BoneNum", Bones.Count);
+                sw.Write("BoneNum", Bones.Count);
                 for (int i = 0; i < Bones.Count; i++)
                 {
                     Bones[i].Save(sw, Version, NewScale);
@@ -203,51 +203,51 @@ namespace EcmFileEditor
             }
             if (Version >= 27)
             {
-                sw.WriteParameter("DefSpeed", DefSpeed);
+                sw.Write("DefSpeed", DefSpeed);
             }
             if (Version >= 43)
             {
-                sw.WriteParameter("CanCastShadow", CanCastShadow);
+                sw.Write("CanCastShadow", CanCastShadow);
             }
             if (Version >= 45)
             {
-                sw.WriteParameter("RenderModel", RenderModel);
+                sw.Write("RenderModel", RenderModel);
             }
             if (Version >= 48)
             {
-                sw.WriteParameter("RenderEdge", RenderEdge);
+                sw.Write("RenderEdge", RenderEdge);
             }
             if (Version >= 60)
             {
-                sw.WriteParameter("PSFileVersion", PSFileVersion);
+                sw.Write("PSFileVersion", PSFileVersion);
             }
             if (Version >= 57)
             {
-                sw.WriteParameter("ShaderFile", ShaderFile);
-                sw.WriteParameter("ShaderTex", ShaderTex);
-                sw.WriteParameter("PSConstCount", PSConstCount);
+                sw.Write("ShaderFile", ShaderFile);
+                sw.Write("ShaderTex", ShaderTex);
+                sw.Write("PSConstCount", PSConstCount);
             }
             if (Version >= 32)
             {
-                sw.WriteParameter("ChannelCount", ChannelCount);
-                sw.WriteParameter("ChannelCount", ChannelMask.Count);
+                sw.Write("ChannelCount", ChannelCount);
+                sw.Write("ChannelCount", ChannelMask.Count);
                 for (int i = 0; i < ChannelMask.Count; i++)
                 {
-                    sw.WriteParameter("ChannelMask", ChannelMask[i]);
+                    sw.Write("ChannelMask", ChannelMask[i]);
                 }
             }
             if (Version >= 14)
             {
-                sw.WriteParameter("CoGfxNum", Gfxs.Count);
+                sw.Write("CoGfxNum", Gfxs.Count);
             }
-            sw.WriteParameter("ComActCount", ComActCount);
+            sw.Write("ComActCount", ComActCount);
             if (Version >= 71)
             {
                 for (int i = 0; i < 11; i++)
                 {
-                    sw.WriteParameter("AudioEventGroupEnable", AudioEventGroupEnable[i]);
+                    sw.Write("AudioEventGroupEnable", AudioEventGroupEnable[i]);
                 }
-                sw.WriteParameter("ParticleBonesCount", ParticleBonesCount);
+                sw.Write("ParticleBonesCount", ParticleBonesCount);
             }
             if (Version >= 14)
             {
@@ -262,29 +262,29 @@ namespace EcmFileEditor
             }
             if (Version >= 25)
             {
-                sw.WriteParameter("ScriptCount", Scripts.Count);
+                sw.Write("ScriptCount", Scripts.Count);
                 for (int i = 0; i < Scripts.Count; i++)
                 {
                     Scripts[i].Write(sw, Version);
                 }
             }
-            sw.WriteParameter("AddiSkinCount", AddiSkins.Count);
+            sw.Write("AddiSkinCount", AddiSkins.Count);
             for (int i = 0; i < AddiSkins.Count; i++)
             {
-                sw.WriteParameter("AddiSkinPath", AddiSkins[i]);
+                sw.Write("AddiSkinPath", AddiSkins[i]);
             }
-            sw.WriteParameter("ChildCount", Childs.Count);
+            sw.Write("ChildCount", Childs.Count);
             for (int i = 0; i < Childs.Count; i++)
             {
                 Childs[i].Save(sw, Version);
             }
             if (Version >= 33)
             {
-                sw.WriteParameter("PhysFileName", physfilename);
+                sw.Write("PhysFileName", physfilename);
             }
             if (Version >= 41)
             {
-                sw.WriteParameter("ECMHookCount", Hooks.Count);
+                sw.Write("ECMHookCount", Hooks.Count);
                 for (int i = 0; i < Hooks.Count; i++)
                 {
                     Hooks[i].Save(sw, Version);
@@ -345,38 +345,38 @@ namespace EcmFileEditor
         {
             Name = sr.ReadLine().GetEcmLineValue();
             Id = sr.ReadLine().GetEcmLineValue().ToInt32();
-            Scale = sr.ReadLine().GetEcmLineValue().ToDecimal();
+            Scale = Convert.ToDecimal(sr.ReadLine().GetEcmLineValue());
             string[] Vals1 = sr.ReadLine().Split(new string[] { " " }, StringSplitOptions.None);
             for (int i = 0; i < 3; i++)
             {
-                Hook1[i] = Vals1[i].ToDecimal();
+                Hook1[i] = Convert.ToDecimal(Vals1[i]);
             }
             string[] Vals2 = sr.ReadLine().Split(new string[] { " " }, StringSplitOptions.None);
             for (int i = 0; i < 3; i++)
             {
-                Hook2[i] = Vals2[i].ToDecimal();
+                Hook2[i] = Convert.ToDecimal(Vals2[i]);
             }
             string[] Vals3 = sr.ReadLine().Split(new string[] { " " }, StringSplitOptions.None);
             for (int i = 0; i < 3; i++)
             {
-                Hook3[i] = Vals3[i].ToDecimal();
+                Hook3[i] = Convert.ToDecimal(Vals3[i]);
             }
             string[] Vals4 = sr.ReadLine().Split(new string[] { " " }, StringSplitOptions.None);
             for (int i = 0; i < 3; i++)
             {
-                Hook4[i] = Vals4[i].ToDecimal();
+                Hook4[i] = Convert.ToDecimal(Vals4[i]);
             }
 
         }
         public void Save(StreamWriter sw, int Version)
         {
-            sw.WriteParameter("ECMHook", Name);
-            sw.WriteParameter("ID", Id);
-            sw.WriteParameter("Scale", Scale);
-            sw.WriteParameter("", Hook1, true);
-            sw.WriteParameter("", Hook2, true);
-            sw.WriteParameter("", Hook3, true);
-            sw.WriteParameter("", Hook4, true);
+            sw.Write("ECMHook", Name);
+            sw.Write("ID", Id);
+            sw.Write("Scale", Scale);
+            sw.Write("", Hook1, true);
+            sw.Write("", Hook2, true);
+            sw.Write("", Hook3, true);
+            sw.Write("", Hook4, true);
         }
     }
     public class Action
@@ -417,7 +417,7 @@ namespace EcmFileEditor
             }
             if (Version >= 40)
             {
-                PlaySpeed = sr.ReadLine().GetEcmLineValue().ToDecimal();
+                PlaySpeed = Convert.ToDecimal(sr.ReadLine().GetEcmLineValue());
             }
             if (Version >= 49)
             {
@@ -469,32 +469,32 @@ namespace EcmFileEditor
         }
         public void Save(StreamWriter sw, int Version)
         {
-            sw.WriteParameter("CombineActName", CombineActName);
-            sw.WriteParameter("LoopCount", LoopCount);
+            sw.Write("CombineActName", CombineActName);
+            sw.Write("LoopCount", LoopCount);
             if (Version >= 32)
             {
-                sw.WriteParameter("RankCount", Ranks.Count);
+                sw.Write("RankCount", Ranks.Count);
                 for (int i = 0; i < Ranks.Count; i++)
                 {
                     Ranks[i].Write(sw);
                 }
-                sw.WriteParameter("EventChannel", EventChannel);
+                sw.Write("EventChannel", EventChannel);
             }
             if (Version >= 42)
             {
-                sw.WriteParameter("PlaySpeed", PlaySpeed);
+                sw.Write("PlaySpeed", PlaySpeed);
             }
             if (Version >= 49)
             {
-                sw.WriteParameter("StopChildAct", StopChildAct);
-                sw.WriteParameter("ResetMtl", ResetMtl);
+                sw.Write("StopChildAct", StopChildAct);
+                sw.Write("ResetMtl", ResetMtl);
             }
-            sw.WriteParameter("BaseActCount", BaseActions.Count);
+            sw.Write("BaseActCount", BaseActions.Count);
             for (int i = 0; i < BaseActions.Count; i++)
             {
                 BaseActions[i].Write(sw, Version);
             }
-            sw.WriteParameter("EventCount", EventCount);
+            sw.Write("EventCount", EventCount);
             for (int i = 0; i < Gfxs.Count; i++)
             {
                 Gfxs[i].Save(sw, Version);
@@ -603,13 +603,13 @@ namespace EcmFileEditor
             string[] Vals = sr.ReadLine().GetEcmLineValue().Split(new string[] { "," }, StringSplitOptions.None);
             for (int i = 0; i < 3; i++)
             {
-                HookOffset[i] = Vals[i].ToDecimal();
+                HookOffset[i] = Convert.ToDecimal(Vals[i]);
             }
-            HookYaw = sr.ReadLine().GetEcmLineValue().ToDecimal();
-            HookPitch = sr.ReadLine().GetEcmLineValue().ToDecimal();
+            HookYaw = Convert.ToDecimal(sr.ReadLine().GetEcmLineValue());
+            HookPitch = Convert.ToDecimal(sr.ReadLine().GetEcmLineValue());
             if (Version >= 19)
             {
-                HookRot = sr.ReadLine().GetEcmLineValue().ToDecimal();
+                HookRot = Convert.ToDecimal(sr.ReadLine().GetEcmLineValue());
             }
             BindParent = sr.ReadLine().GetEcmLineValue().ToInt32();
             if (Version >= 15)
@@ -628,12 +628,12 @@ namespace EcmFileEditor
             {
                 CustomData = sr.ReadLine().GetEcmLineValue().ToInt32();
             }
-            GfxScale = sr.ReadLine().GetEcmLineValue().ToDecimal();
+            GfxScale = Convert.ToDecimal(sr.ReadLine().GetEcmLineValue());
             if (Version >= 22)
             {
-                GfxAlpha = sr.ReadLine().GetEcmLineValue().ToDecimal();
+                GfxAlpha = Convert.ToDecimal(sr.ReadLine().GetEcmLineValue());
             }
-            GfxSpeed = sr.ReadLine().GetEcmLineValue().ToDecimal();
+            GfxSpeed = Convert.ToDecimal(sr.ReadLine().GetEcmLineValue());
             if (Version <= 14)
             {
                 FadeOut = sr.ReadLine().GetEcmLineValue().ToInt32();
@@ -667,90 +667,90 @@ namespace EcmFileEditor
         }
         public void Save(StreamWriter sw, int Version)
         {
-            sw.WriteParameter("EventType", EventType);
+            sw.Write("EventType", EventType);
             if (Version >= 18)
             {
-                sw.WriteParameter("StartTime", StartTime);
+                sw.Write("StartTime", StartTime);
                 if (Version >= 20)
                 {
-                    sw.WriteParameter("TimeSpan", TimeSpan);
+                    sw.Write("TimeSpan", TimeSpan);
                 }
-                sw.WriteParameter("Once", Once);
+                sw.Write("Once", Once);
             }
             else
             {
-                sw.WriteParameter("FxStartTime", FxStartTime);
+                sw.Write("FxStartTime", FxStartTime);
             }
             if (Version >= 54)
             {
 
-                sw.WriteParameter("FxFileNum", FxFiles.Count);
+                sw.Write("FxFileNum", FxFiles.Count);
                 for (int i = 0; i < FxFiles.Count; i++)
                 {
-                    sw.WriteParameter("FxFilePath", FxFiles[i]);
+                    sw.Write("FxFilePath", FxFiles[i]);
                 }
             }
             else
             {
-                sw.WriteParameter("FxFilePath", FxFilePath);
+                sw.Write("FxFilePath", FxFilePath);
             }
-            sw.WriteParameter("HookName", HookName);
-            sw.WriteParameter("HookOffset", HookOffset, true);
-            sw.WriteParameter("HookYaw", HookYaw);
-            sw.WriteParameter("HookPitch", HookPitch);
+            sw.Write("HookName", HookName);
+            sw.Write("HookOffset", HookOffset, true);
+            sw.Write("HookYaw", HookYaw);
+            sw.Write("HookPitch", HookPitch);
             if (Version >= 19)
             {
-                sw.WriteParameter("HookRot", HookRot);
+                sw.Write("HookRot", HookRot);
             }
-            sw.WriteParameter("BindParent", BindParent);
+            sw.Write("BindParent", BindParent);
             if (Version >= 15)
             {
-                sw.WriteParameter("FadeOut", FadeOut);
+                sw.Write("FadeOut", FadeOut);
             }
             if (Version >= 18)
             {
-                sw.WriteParameter("UseModelAlpha", UseModelAlpha);
+                sw.Write("UseModelAlpha", UseModelAlpha);
             }
             if (Version >= 59)
             {
-                sw.WriteParameter("CustomPath", CustomPath);
+                sw.Write("CustomPath", CustomPath);
             }
 
             if (Version >= 62)
             {
-                sw.WriteParameter("CustomData", CustomData);
+                sw.Write("CustomData", CustomData);
             }
-            sw.WriteParameter("GfxScale", GfxScale);
+            sw.Write("GfxScale", GfxScale);
             if (Version >= 22)
             {
-                sw.WriteParameter("GfxAlpha", GfxAlpha);
+                sw.Write("GfxAlpha", GfxAlpha);
             }
-            sw.WriteParameter("GfxSpeed", GfxSpeed);
+            sw.Write("GfxSpeed", GfxSpeed);
             if (Version <= 14)
             {
-                sw.WriteParameter("FadeOut", FadeOut);
+                sw.Write("FadeOut", FadeOut);
             }
             if (Version >= 23)
             {
-                sw.WriteParameter("GfxOuterPath", GfxOuterPath);
+                sw.Write("GfxOuterPath", GfxOuterPath);
             }
             if (Version >= 35)
             {
-                sw.WriteParameter("GfxRelToECM", GfxRelToECM);
+                sw.Write("GfxRelToECM", GfxRelToECM);
             }
             if (Version >= 54)
             {
-                sw.WriteParameter("GfxDelayTime", GfxDelayTime);
+                sw.Write("GfxDelayTime", GfxDelayTime);
             }
             if (Version >= 66)
             {
-                sw.WriteParameter("GfxRotWithModel", GfxRotWithModel);
+                sw.Write("GfxRotWithModel", GfxRotWithModel);
             }
             if (Version >= 71)
             {
-                sw.WriteParameter("GfxUseFixedPoint", GfxUseFixedPoint);
+                sw.Write("GfxUseFixedPoint", GfxUseFixedPoint);
             }
-            sw.WriteParameter("GfxParamCount", GfxParams.Count);
+            sw.Write("GfxParamCount", GfxParams.Count);
             for (int i = 0; i < GfxParams.Count; i++)
             {
                 GfxParams[i].Write(sw, Version);
@@ -833,13 +833,13 @@ namespace EcmFileEditor
             string[] Vals = sr.ReadLine().GetEcmLineValue().Split(new string[] { "," }, StringSplitOptions.None);
             for (int i = 0; i < 3; i++)
             {
-                HookOffset[i] = Vals[i].ToDecimal();
+                HookOffset[i] = Convert.ToDecimal(Vals[i]);
             }
-            HookYaw = sr.ReadLine().GetEcmLineValue().ToDecimal();
-            HookPitch = sr.ReadLine().GetEcmLineValue().ToDecimal();
+            HookYaw = Convert.ToDecimal(sr.ReadLine().GetEcmLineValue());
+            HookPitch = Convert.ToDecimal(sr.ReadLine().GetEcmLineValue());
             if (Version >= 19)
             {
-                HookRot = sr.ReadLine().GetEcmLineValue().ToDecimal();
+                HookRot = Convert.ToDecimal(sr.ReadLine().GetEcmLineValue());
             }
             if (Version >= 15)
             {
@@ -873,12 +873,12 @@ namespace EcmFileEditor
                 {
                     AbsoluteVolume = sr.ReadLine().GetEcmLineValue().ToInt32();
                 }
-                PitchMin = sr.ReadLine().GetEcmLineValue().ToDecimal();
-                PitchMax = sr.ReadLine().GetEcmLineValue().ToDecimal();
+                PitchMin = Convert.ToDecimal(sr.ReadLine().GetEcmLineValue());
+                PitchMax = Convert.ToDecimal(sr.ReadLine().GetEcmLineValue());
 
             }
-            MinDist = sr.ReadLine().GetEcmLineValue().ToDecimal();
-            MaxDist = sr.ReadLine().GetEcmLineValue().ToDecimal();
+            MinDist = Convert.ToDecimal(sr.ReadLine().GetEcmLineValue());
+            MaxDist = Convert.ToDecimal(sr.ReadLine().GetEcmLineValue());
             if (Version >= 65)
             {
                 FixSpeed = sr.ReadLine().GetEcmLineValue().ToInt32();
@@ -886,92 +886,92 @@ namespace EcmFileEditor
             }
             if (Version >= 71)
             {
-                PercentStart = sr.ReadLine().GetEcmLineValue().ToDecimal();
+                PercentStart = Convert.ToDecimal(sr.ReadLine().GetEcmLineValue());
                 Group = sr.ReadLine().GetEcmLineValue().ToInt32();
             }
         }
         public void Save(StreamWriter sw, int Version)
         {
-            sw.WriteParameter("EventType", EventType);
+            sw.Write("EventType", EventType);
             if (Version >= 18)
             {
-                sw.WriteParameter("StartTime", StartTime);
+                sw.Write("StartTime", StartTime);
                 if (Version >= 20)
                 {
-                    sw.WriteParameter("TimeSpan", TimeSpan);
+                    sw.Write("TimeSpan", TimeSpan);
                 }
-                sw.WriteParameter("Once", Once);
+                sw.Write("Once", Once);
             }
             else
             {
-                sw.WriteParameter("FxStartTime", FxStartTime);
+                sw.Write("FxStartTime", FxStartTime);
             }
             if (Version >= 54)
             {
-                sw.WriteParameter("FxFileNum", FxFiles.Count);
+                sw.Write("FxFileNum", FxFiles.Count);
                 for (int i = 0; i < FxFiles.Count; i++)
                 {
-                    sw.WriteParameter("FxFilePath", FxFiles[i]);
+                    sw.Write("FxFilePath", FxFiles[i]);
                 }
             }
             else
             {
-                sw.WriteParameter("FxFilePath", FxFilePath);
+                sw.Write("FxFilePath", FxFilePath);
             }
-            sw.WriteParameter("HookName", HookName);
-            sw.WriteParameter("HookOffset", HookOffset, true);
-            sw.WriteParameter("HookYaw", HookYaw);
-            sw.WriteParameter("HookPitch", HookPitch);
+            sw.Write("HookName", HookName);
+            sw.Write("HookOffset", HookOffset, true);
+            sw.Write("HookYaw", HookYaw);
+            sw.Write("HookPitch", HookPitch);
             if (Version >= 19)
             {
-                sw.WriteParameter("HookRot", HookRot);
+                sw.Write("HookRot", HookRot);
             }
             if (Version >= 15)
             {
-                sw.WriteParameter("BindParent", BindParent);
+                sw.Write("BindParent", BindParent);
             }
-            sw.WriteParameter("FadeOut", FadeOut);
+            sw.Write("FadeOut", FadeOut);
             if (Version >= 18)
             {
-                sw.WriteParameter("UseModelAlpha", UseModelAlpha);
+                sw.Write("UseModelAlpha", UseModelAlpha);
             }
             if (Version >= 59)
             {
-                sw.WriteParameter("CustomPath", CustomPath);
+                sw.Write("CustomPath", CustomPath);
             }
             if (Version >= 62)
             {
-                sw.WriteParameter("CustomData", CustomData);
+                sw.Write("CustomData", CustomData);
             }
-            sw.WriteParameter("SoundVer", SoundVer);
-            sw.WriteParameter("Force2D", Force2D);
-            sw.WriteParameter("IsLoop", IsLoop);
+            sw.Write("SoundVer", SoundVer);
+            sw.Write("Force2D", Force2D);
+            sw.Write("IsLoop", IsLoop);
             if (Version < 54)
             {
-                sw.WriteParameter("Volume", Volume);
+                sw.Write("Volume", Volume);
             }
             else
             {
-                sw.WriteParameter("VolMin", VolMin);
-                sw.WriteParameter("VolMax", VolMax);
+                sw.Write("VolMin", VolMin);
+                sw.Write("VolMax", VolMax);
                 if (Version >= 65)
                 {
-                    sw.WriteParameter("AbsoluteVolume", AbsoluteVolume);
+                    sw.Write("AbsoluteVolume", AbsoluteVolume);
                 }
-                sw.WriteParameter("PitchMin", PitchMin);
-                sw.WriteParameter("PitchMax", PitchMax);
+                sw.Write("PitchMin", PitchMin);
+                sw.Write("PitchMax", PitchMax);
             }
-            sw.WriteParameter("MinDist", MinDist);
-            sw.WriteParameter("MaxDist", MaxDist);
+            sw.Write("MinDist", MinDist);
+            sw.Write("MaxDist", MaxDist);
             if (Version >= 65)
             {
-                sw.WriteParameter("FixSpeed", FixSpeed);
-                sw.WriteParameter("SilentHeader", SilentHeader);
+                sw.Write("FixSpeed", FixSpeed);
+                sw.Write("SilentHeader", SilentHeader);
             }
             if (Version >= 71)
             {
-                sw.WriteParameter("PercentStart", PercentStart);
-                sw.WriteParameter("Group", Group);
+                sw.Write("PercentStart", PercentStart);
+                sw.Write("Group", Group);
             }
         }
     }
@@ -1002,16 +1002,16 @@ namespace EcmFileEditor
         }
         public void Write(StreamWriter sw, int Version)
         {
-            sw.WriteParameter("BaseActName", BaseActName);
-            sw.WriteParameter("ActStartTime", ActStartTime);
+            sw.Write("BaseActName", BaseActName);
+            sw.Write("ActStartTime", ActStartTime);
             if (Version < 36)
             {
-                sw.WriteParameter("LoopCount", LoopCount);
+                sw.Write("LoopCount", LoopCount);
             }
             else
             {
-                sw.WriteParameter("LoopMinNum", LoopMinNum);
-                sw.WriteParameter("LoopMaxNum", LoopMaxNum);
+                sw.Write("LoopMinNum", LoopMinNum);
+                sw.Write("LoopMaxNum", LoopMaxNum);
             }
 
         }
@@ -1031,18 +1031,18 @@ namespace EcmFileEditor
             string[] Vals = sr.ReadLine().GetEcmLineValue().Split(new string[] { "," }, StringSplitOptions.None);
             for (int i = 0; i < 3; i++)
             {
-                BoneScale[i] = Vals[i].ToDecimal();
+                BoneScale[i] = Convert.ToDecimal(Vals[i]);
             }
 
         }
         public void Save(StreamWriter sw, int Version, int sc)
         {
-            sw.WriteParameter("BoneIndex", BoneIndex);
+            sw.Write("BoneIndex", BoneIndex);
             if (sc == 0)
             {
-                sw.WriteParameter("BoneSclType", BoneSclType);
+                sw.Write("BoneSclType", BoneSclType);
             }
-            sw.WriteParameter("BoneScale", BoneScale, true);
+            sw.Write("BoneScale", BoneScale, true);
         }
     }
     public class GfxParam
@@ -1062,11 +1062,11 @@ namespace EcmFileEditor
         }
         public void Write(StreamWriter sw, int Version)
         {
-            sw.WriteParameter("ParamEleName", ParamEleName);
-            sw.WriteParameter("ParamId", ParamId);
-            sw.WriteParameter("ParamDataType", ParamDataType);
-            sw.WriteParameter("ParamDataIsCmd", ParamDataIsCmd);
-            sw.WriteParameter("ParamDataHook", ParamDataHook);
+            sw.Write("ParamEleName", ParamEleName);
+            sw.Write("ParamId", ParamId);
+            sw.Write("ParamDataType", ParamDataType);
+            sw.Write("ParamDataIsCmd", ParamDataIsCmd);
+            sw.Write("ParamDataHook", ParamDataHook);
         }
     }
     public class EndScript
@@ -1085,8 +1085,8 @@ namespace EcmFileEditor
         }
         public void Write(StreamWriter sw, int Version)
         {
-            sw.WriteParameter("id", Id);
-            sw.WriteParameter("ScriptLines", LinesCount);
+            sw.Write("id", Id);
+            sw.Write("ScriptLines", LinesCount);
             for (int i = 0; i < LinesCount; i++)
             {
                 sw.WriteLine(ScriptLines[i]);
@@ -1109,10 +1109,10 @@ namespace EcmFileEditor
         }
         public void Save(StreamWriter sw, int Version)
         {
-            sw.WriteParameter("ChildName", ChildName);
-            sw.WriteParameter("ChildPath", ChildPath);
-            sw.WriteParameter("HHName", HHName);
-            sw.WriteParameter("CCName", CCName);
+            sw.Write("ChildName", ChildName);
+            sw.Write("ChildPath", ChildPath);
+            sw.Write("HHName", HHName);
+            sw.Write("CCName", CCName);
         }
     }
     public class Point3D
@@ -1124,12 +1124,12 @@ namespace EcmFileEditor
         public Point3D(StreamReader sr, bool Direction)
         {
             string[] Vals = sr.ReadLine().GetEcmLineValue().Split(new string[] { "," }, StringSplitOptions.None);
-            X = Vals[0].ToDecimal();
-            Y = Vals[1].ToDecimal();
-            Z = Vals[2].ToDecimal();
+            X = Convert.ToDecimal(Vals[0]);
+            Y = Convert.ToDecimal(Vals[1]);
+            Z = Convert.ToDecimal(Vals[2]);
             if (Direction)
             {
-                R = Vals[3].ToDecimal();
+                R = Convert.ToDecimal(Vals[3]);
             }
         }
     }
@@ -1160,8 +1160,8 @@ namespace EcmFileEditor
         }
         public void Write(StreamWriter sw, int Version)
         {
-            sw.WriteParameter("Col", Col);
-            sw.WriteParameter("Time", Time);
+            sw.Write("Col", Col);
+            sw.Write("Time", Time);
         }
     }
     public class Scale
@@ -1175,7 +1175,7 @@ namespace EcmFileEditor
             string[] Vals = sr.ReadLine().Split(':')[1].Split(new string[] { " " }, StringSplitOptions.None);
             for (int i = 0; i < 3; i++)
             {
-                SclParam[i] = Vals[i + 1].Replace(" ", "").ToDecimal();
+                SclParam[i] = Convert.ToDecimal(Vals[i + 1].Replace(" ", ""));
             }
             for (int z = 0; z < SclParam[2]; z++)
             {
@@ -1183,17 +1183,17 @@ namespace EcmFileEditor
                 string[] Vals1 = sr.ReadLine().Split(':')[1].Split(new string[] { " " }, StringSplitOptions.None);
                 for (int i = 0; i < 3; i++)
                 {
-                    SclDest.Last()[i] = Vals1[i + 1].ToDecimal();
+                    SclDest.Last()[i] = Convert.ToDecimal(Vals1[i + 1]);
                 }
             }
         }
         public void Write(StreamWriter sw, int Version)
         {
-            sw.WriteParameter("Name", Name);
-            sw.WriteParameter("SclParam", string.Join(" ", SclParam));
+            sw.Write("Name", Name);
+            sw.Write("SclParam", string.Join(" ", SclParam));
             for (int i = 0; i < SclParam[2]; i++)
             {
-                sw.WriteParameter("SclDest", SclDest[i], true);
+                sw.Write("SclDest", SclDest[i], true);
             }
         }
     }
@@ -1241,30 +1241,40 @@ namespace EcmFileEditor
         }
         public void Save(StreamWriter sw, int Version)
         {
-            sw.WriteParameter("EventType", EventType);
-            sw.WriteParameter("StartTime", StartTime);
+            sw.Write("EventType", EventType);
+            sw.Write("StartTime", StartTime);
             if (Version >= 20)
             {
-                sw.WriteParameter("TimeSpan", TimeSpan);
+                sw.Write("TimeSpan", TimeSpan);
             }
-            sw.WriteParameter("Once", Once);
-            sw.WriteParameter("ChildActName", ChildActName);
-            sw.WriteParameter("HHName", HHName);
+            sw.Write("Once", Once);
+            sw.Write("ChildActName", ChildActName);
+            sw.Write("HHName", HHName);
             if (Version >= 42)
             {
-                sw.WriteParameter("TransTime", TransTime);
+                sw.Write("TransTime", TransTime);
             }
-            sw.WriteParameter("IsTrail", IsTrail);
-            sw.WriteParameter("TrailSpan", TrailSpan);
-            sw.WriteParameter("Segs", Segs);
+            sw.Write("IsTrail", IsTrail);
+            sw.Write("TrailSpan", TrailSpan);
+            sw.Write("Segs", Segs);
             for (int i = 0; i < Segs; i++)
             {
-                sw.WriteParameter("Pos", string.Format("{0}, {1}, {2}", Positions[i].X.RoundToSix(6), Positions[i].Y.RoundToSix(6), Positions[i].Z.RoundToSix(6)));
-                sw.WriteParameter("Dir", string.Format("{0}, {1}, {2}, {3}", Directions[i].X.RoundToSix(6), Directions[i].Y.RoundToSix(6), Directions[i].Z.RoundToSix(6), Directions[i].R.RoundToSix(6)));
+                sw.Write("Pos", string.Format("{0}, {1}, {2}", Positions[i].X.RoundToSix(6), Positions[i].Y.RoundToSix(6), Positions[i].Z.RoundToSix(6)));
+                sw.Write("Dir", string.Format("{0}, {1}, {2}, {3}", Directions[i].X.RoundToSix(6), Directions[i].Y.RoundToSix(6), Directions[i].Z.RoundToSix(6), Directions[i].R.RoundToSix(6)));
             }
 
         }
     }
+
+    public static class DecimalExtensions
+    {
+        public static decimal RoundToSix(this decimal value, int digits)
+        {
+            return Math.Round(value, digits);
+        }
+    }
+
+
     public class Color
     {
         public int EventType = 103;
@@ -1291,39 +1301,39 @@ namespace EcmFileEditor
             string[] Vals1 = sr.ReadLine().GetEcmLineValue().Split(new string[] { "," }, StringSplitOptions.None);
             for (int i = 0; i < 4; i++)
             {
-                ColorValue1[i] = Vals1[i].ToDecimal();
+                ColorValue1[i] = Convert.ToDecimal(Vals1[i]);
             }
             string[] Vals2 = sr.ReadLine().GetEcmLineValue().Split(new string[] { "," }, StringSplitOptions.None);
             for (int i = 0; i < 4; i++)
             {
-                ColorValue2[i] = Vals2[i].ToDecimal();
+                ColorValue2[i] = Convert.ToDecimal(Vals2[i]);
             }
             string[] Vals3 = sr.ReadLine().GetEcmLineValue().Split(new string[] { "," }, StringSplitOptions.None);
             for (int i = 0; i < 4; i++)
             {
-                ColorValue3[i] = Vals3[i].ToDecimal();
+                ColorValue3[i] = Convert.ToDecimal(Vals3[i]);
             }
             string[] Vals4 = sr.ReadLine().GetEcmLineValue().Split(new string[] { "," }, StringSplitOptions.None);
             for (int i = 0; i < 4; i++)
             {
-                ColorValue4[i] = Vals4[i].ToDecimal();
+                ColorValue4[i] = Convert.ToDecimal(Vals4[i]);
             }
             ApplyChild = sr.ReadLine().GetEcmLineValue().ToInt32();
         }
         public void Save(StreamWriter sw, int Version)
         {
-            sw.WriteParameter("EventType", EventType);
-            sw.WriteParameter("StartTime", StartTime);
+            sw.Write("EventType", EventType);
+            sw.Write("StartTime", StartTime);
             if (Version >= 20)
             {
-                sw.WriteParameter("TimeSpan", TimeSpan);
+                sw.Write("TimeSpan", TimeSpan);
             }
-            sw.WriteParameter("Once", Once);
-            sw.WriteParameter("ColorValue", ColorValue1, true);
-            sw.WriteParameter("ColorValue", ColorValue2, true);
-            sw.WriteParameter("ColorValue", ColorValue3, true);
-            sw.WriteParameter("ColorValue", ColorValue4, true);
-            sw.WriteParameter("ApplyChild", ApplyChild);
+            sw.Write("Once", Once);
+            sw.Write("ColorValue", ColorValue1, true);
+            sw.Write("ColorValue", ColorValue2, true);
+            sw.Write("ColorValue", ColorValue3, true);
+            sw.Write("ColorValue", ColorValue4, true);
+            sw.Write("ApplyChild", ApplyChild);
         }
     }
     public class Attack
@@ -1366,22 +1376,22 @@ namespace EcmFileEditor
         }
         public void Save(StreamWriter sw, int Version)
         {
-            sw.WriteParameter("EventType", EventType);
-            sw.WriteParameter("StartTime", StartTime);
-            sw.WriteParameter("TimeSpan", TimeSpan);
-            sw.WriteParameter("Once", Once);
-            sw.WriteParameter("AtkPath", AtkPath);
-            sw.WriteParameter("Divisions", Divisions);
+            sw.Write("EventType", EventType);
+            sw.Write("StartTime", StartTime);
+            sw.Write("TimeSpan", TimeSpan);
+            sw.Write("Once", Once);
+            sw.Write("AtkPath", AtkPath);
+            sw.Write("Divisions", Divisions);
             if (Version >= 39)
             {
-                sw.WriteParameter("AtkUseDelay", AtkUseDelay);
-                sw.WriteParameter("AtkDelayNum", AtkDelayNum);
-                sw.WriteParameter("AtkDelayTime", AtkDelayTime1);
-                sw.WriteParameter("AtkDelayTime", AtkDelayTime2);
+                sw.Write("AtkUseDelay", AtkUseDelay);
+                sw.Write("AtkDelayNum", AtkDelayNum);
+                sw.Write("AtkDelayTime", AtkDelayTime1);
+                sw.Write("AtkDelayTime", AtkDelayTime2);
             }
             if (Version >= 65)
             {
-                sw.WriteParameter("AtkOrient", AtkOrient);
+                sw.Write("AtkOrient", AtkOrient);
             }
         }
     }
@@ -1415,18 +1425,18 @@ namespace EcmFileEditor
         }
         public void Save(StreamWriter sw, int Version)
         {
-            sw.WriteParameter("EventType", EventType);
-            sw.WriteParameter("StartTime", StartTime);
-            sw.WriteParameter("TimeSpan", TimeSpan);
-            sw.WriteParameter("Once", Once);
-            sw.WriteParameter("Num", Scales.Count);
+            sw.Write("EventType", EventType);
+            sw.Write("StartTime", StartTime);
+            sw.Write("TimeSpan", TimeSpan);
+            sw.Write("Once", Once);
+            sw.Write("Num", Scales.Count);
             for (int i = 0; i < Scales.Count; i++)
             {
                 Scales[i].Write(sw, Version);
             }
             if (Version >= 67)
             {
-                sw.WriteParameter("Use File Scale", Use_File_Scale);
+                sw.Write("Use File Scale", Use_File_Scale);
             }
         }
     }
@@ -1462,15 +1472,15 @@ namespace EcmFileEditor
         }
         public void Save(StreamWriter sw, int Version)
         {
-            sw.WriteParameter("EventType", EventType);
-            sw.WriteParameter("StartTime", StartTime);
-            sw.WriteParameter("TimeSpan", TimeSpan);
-            sw.WriteParameter("Once", Once);
-            sw.WriteParameter("Col", Col);
-            sw.WriteParameter("DestNum", Dests.Count);
+            sw.Write("EventType", EventType);
+            sw.Write("StartTime", StartTime);
+            sw.Write("TimeSpan", TimeSpan);
+            sw.Write("Once", Once);
+            sw.Write("Col", Col);
+            sw.Write("DestNum", Dests.Count);
             if (Version >= 56)
             {
-                sw.WriteParameter("ApplyChild", ApplyChild);
+                sw.Write("ApplyChild", ApplyChild);
             }
             for (int i = 0; i < Dests.Count; i++)
             {
@@ -1524,19 +1534,19 @@ namespace EcmFileEditor
         }
         public void Save(StreamWriter sw, int Version)
         {
-            sw.WriteParameter("EventType", EventType);
-            sw.WriteParameter("StartTime", StartTime);
-            sw.WriteParameter("TimeSpan", TimeSpan);
-            sw.WriteParameter("Once", Once);
-            sw.WriteParameter("ScriptCfgState", ScriptCfgState);
+            sw.Write("EventType", EventType);
+            sw.Write("StartTime", StartTime);
+            sw.Write("TimeSpan", TimeSpan);
+            sw.Write("Once", Once);
+            sw.Write("ScriptCfgState", ScriptCfgState);
             if (Version >= 59 && ScriptUsage == 1)
             {
-                sw.WriteParameter("ScriptUsage", ScriptUsage);
+                sw.Write("ScriptUsage", ScriptUsage);
             }
-            sw.WriteParameter("ScriptLinesCount", ScriptLinesCount);
+            sw.Write("ScriptLinesCount", ScriptLinesCount);
             for (int i = 0; i < ScriptLinesCount; i++)
             {
-                sw.WriteParameter("", ScriptLines[i]);
+                sw.Write("", ScriptLines[i]);
             }
         }
     }

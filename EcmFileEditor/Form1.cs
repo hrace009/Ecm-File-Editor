@@ -295,7 +295,7 @@ namespace EcmFileEditor
                 //     }
                 //     catch { }
                 // }
-                OpenEcm.TextBoxText = ofd.FileName;
+                //OpenEcm.TextBoxText = ofd.FileName;
                 ecm = new EcmFileStructure(ofd.FileName);
                 SortControls(ecm.Version);
                 Version.Text = ecm.Version.ToString();
@@ -634,9 +634,9 @@ namespace EcmFileEditor
             int n = Convert.ToInt32((sender as Control).Tag);
             if (n == 36) ecm.Bones[q].BoneIndex = BonesBoneIndex.Text.ToInt32();
             else if (n == 37) ecm.Bones[q].BoneSclType = BonesScaleType.Text.ToInt32();
-            else if (n == 38) ecm.Bones[q].BoneScale[0] = BoneScaleX.Text.ToDecimal();
-            else if (n == 39) ecm.Bones[q].BoneScale[1] = BoneScaleX.Text.ToDecimal();
-            else if (n == 40) ecm.Bones[q].BoneScale[2] = BoneScaleX.Text.ToDecimal();
+            else if (n == 38) ecm.Bones[q].BoneScale[0] = Convert.ToDecimal(BoneScaleX.Text);
+            else if (n == 39) ecm.Bones[q].BoneScale[1] = Convert.ToDecimal(BoneScaleX.Text);
+            else if (n == 40) ecm.Bones[q].BoneScale[2] = Convert.ToDecimal(BoneScaleX.Text);
         }
         private void HookName_Leave(object sender, EventArgs e)
         {
@@ -647,18 +647,18 @@ namespace EcmFileEditor
             if (n == 35) ecm.Hooks[q].Name = HookName.Text;
             else if (n == 21) ecm.Hooks[q].Id = HookId.Text.ToInt32();
             else if (n == 22) ecm.Hooks[q].Scale = HookScale.Text.ToInt32();
-            else if (n == 23) ecm.Hooks[q].Hook1[0] = Hook1X.Text.ToDecimal();
-            else if (n == 24) ecm.Hooks[q].Hook1[1] = Hook1Y.Text.ToDecimal();
-            else if (n == 25) ecm.Hooks[q].Hook1[2] = Hook1Z.Text.ToDecimal();
-            else if (n == 26) ecm.Hooks[q].Hook2[0] = Hook2X.Text.ToDecimal();
-            else if (n == 27) ecm.Hooks[q].Hook2[1] = Hook2Y.Text.ToDecimal();
-            else if (n == 28) ecm.Hooks[q].Hook2[2] = Hook2Z.Text.ToDecimal();
-            else if (n == 29) ecm.Hooks[q].Hook3[0] = Hook3X.Text.ToDecimal();
-            else if (n == 30) ecm.Hooks[q].Hook3[1] = Hook3Y.Text.ToDecimal();
-            else if (n == 31) ecm.Hooks[q].Hook3[2] = Hook3Z.Text.ToDecimal();
-            else if (n == 32) ecm.Hooks[q].Hook4[0] = Hook4X.Text.ToDecimal();
-            else if (n == 33) ecm.Hooks[q].Hook4[1] = Hook4Y.Text.ToDecimal();
-            else if (n == 34) ecm.Hooks[q].Hook4[2] = Hook4Z.Text.ToDecimal();
+            else if (n == 23) ecm.Hooks[q].Hook1[0] = Convert.ToDecimal(Hook1X.Text);
+            else if (n == 24) ecm.Hooks[q].Hook1[1] = Convert.ToDecimal(Hook1Y.Text);
+            else if (n == 25) ecm.Hooks[q].Hook1[2] = Convert.ToDecimal(Hook1Z.Text);
+            else if (n == 26) ecm.Hooks[q].Hook2[0] = Convert.ToDecimal(Hook2X.Text);
+            else if (n == 27) ecm.Hooks[q].Hook2[1] = Convert.ToDecimal(Hook2Y.Text);
+            else if (n == 28) ecm.Hooks[q].Hook2[2] = Convert.ToDecimal(Hook2Z.Text);
+            else if (n == 29) ecm.Hooks[q].Hook3[0] = Convert.ToDecimal(Hook3X.Text);
+            else if (n == 30) ecm.Hooks[q].Hook3[1] = Convert.ToDecimal(Hook3Y.Text);
+            else if (n == 31) ecm.Hooks[q].Hook3[2] = Convert.ToDecimal(Hook3Z.Text);
+            else if (n == 32) ecm.Hooks[q].Hook4[0] = Convert.ToDecimal(Hook4X.Text);
+            else if (n == 33) ecm.Hooks[q].Hook4[1] = Convert.ToDecimal(Hook4Y.Text);
+            else if (n == 34) ecm.Hooks[q].Hook4[2] = Convert.ToDecimal(Hook4Z.Text);
         }
         private void ActionSfxs_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
@@ -910,15 +910,15 @@ namespace EcmFileEditor
             else if (n == 49) ecm.Gfxs[q].Once = DGfxOnce.Text.ToInt32();
             else if (n == 50) ecm.Gfxs[q].BindParent = DGfxBindParent.Text.ToInt32();
             else if (n == 51) ecm.Gfxs[q].FadeOut = DGfxFadeOut.Text.ToInt32();
-            else if (n == 52) ecm.Gfxs[q].HookOffset[0] = DGfxHookX.Text.ToDecimal();
-            else if (n == 53) ecm.Gfxs[q].HookOffset[1] = DGfxHookY.Text.ToDecimal();
-            else if (n == 54) ecm.Gfxs[q].HookOffset[2] = DGfxHookZ.Text.ToDecimal();
-            else if (n == 55) ecm.Gfxs[q].HookYaw = DGfxHookYaw.Text.ToDecimal();
+            else if (n == 52) ecm.Gfxs[q].HookOffset[0] = Convert.ToDecimal(DGfxHookX.Text);
+            else if (n == 53) ecm.Gfxs[q].HookOffset[1] = Convert.ToDecimal(DGfxHookY.Text);
+            else if (n == 54) ecm.Gfxs[q].HookOffset[2] = Convert.ToDecimal(DGfxHookZ.Text);
+            else if (n == 55) ecm.Gfxs[q].HookYaw = Convert.ToDecimal(DGfxHookYaw.Text);
             else if (n == 56) ecm.Gfxs[q].HookPitch = DGfxHookPitch.Text.ToInt32();
             else if (n == 57) ecm.Gfxs[q].HookRot = DGfxTimeSpan.Text.ToInt32();
-            else if (n == 58) ecm.Gfxs[q].GfxScale = DGfxScale.Text.ToDecimal();
-            else if (n == 59) ecm.Gfxs[q].GfxAlpha = DGfxAlpha.Text.ToDecimal();
-            else if (n == 60) ecm.Gfxs[q].GfxSpeed = DGfxSpeed.Text.ToDecimal();
+            else if (n == 58) ecm.Gfxs[q].GfxScale = Convert.ToDecimal(DGfxScale.Text);
+            else if (n == 59) ecm.Gfxs[q].GfxAlpha = Convert.ToDecimal(DGfxAlpha.Text);
+            else if (n == 60) ecm.Gfxs[q].GfxSpeed = Convert.ToDecimal(DGfxSpeed.Text);
             else if (n == 61) ecm.Gfxs[q].GfxOuterPath = DGfxOuterPath.Text.ToInt32();
             else if (n == 62) ecm.Gfxs[q].GfxRelToECM = DGfxRelToECM.Text.ToInt32();
             else if (n == 63) ecm.Gfxs[q].CustomPath = DGfxCustomPath.Text.ToInt32();
@@ -993,7 +993,7 @@ namespace EcmFileEditor
             }
             else if (n == 71) ecm.Actions[q].LoopCount = ActionLoopCount.Text.ToInt32();
             else if (n == 72) ecm.Actions[q].EventChannel = ActionEventChannel.Text.ToInt32();
-            else if (n == 73) ecm.Actions[q].PlaySpeed = ActionPlaySpeed.Text.ToDecimal();
+            else if (n == 73) ecm.Actions[q].PlaySpeed = Convert.ToDecimal(ActionPlaySpeed.Text);
             else if (n == 74) ecm.Actions[q].StopChildAct = ActionStopChildAct.Text.ToInt32();
             else if (n == 75) ecm.Actions[q].ResetMtl = ActionResetMtl.Text.ToInt32();
         }
@@ -1041,7 +1041,7 @@ namespace EcmFileEditor
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 smd = new SmdFile(ofd.FileName);
-                OpenSmd.TextBoxText = ofd.FileName;
+                //OpenSmd.TextBoxText = ofd.FileName;
                 Dictionary<string, string> Dict = new Dictionary<string, string>();
                 Task[] tasks = new Task[smd.Actions.Count];
                 int i = 0;
@@ -1096,15 +1096,15 @@ namespace EcmFileEditor
             else if (n == 85) ecm.Actions[q].Gfxs[t].Once = ActionsGfxOnce.Text.ToInt32();
             else if (n == 86) ecm.Actions[q].Gfxs[t].BindParent = ActionsGfxBindParent.Text.ToInt32();
             else if (n == 87) ecm.Actions[q].Gfxs[t].FadeOut = ActionsGfxFadeOut.Text.ToInt32();
-            else if (n == 88) ecm.Actions[q].Gfxs[t].HookOffset[0] = ActionGfxHookX.Text.ToDecimal();
-            else if (n == 89) ecm.Actions[q].Gfxs[t].HookOffset[1] = ActionGfxHookY.Text.ToDecimal();
-            else if (n == 90) ecm.Actions[q].Gfxs[t].HookOffset[2] = ActionGfxHookZ.Text.ToDecimal();
-            else if (n == 91) ecm.Actions[q].Gfxs[t].HookYaw = ActionGfxHookYaw.Text.ToDecimal();
+            else if (n == 88) ecm.Actions[q].Gfxs[t].HookOffset[0] = Convert.ToDecimal(ActionGfxHookX.Text);
+            else if (n == 89) ecm.Actions[q].Gfxs[t].HookOffset[1] = Convert.ToDecimal(ActionGfxHookY.Text);
+            else if (n == 90) ecm.Actions[q].Gfxs[t].HookOffset[2] = Convert.ToDecimal(ActionGfxHookZ.Text);
+            else if (n == 91) ecm.Actions[q].Gfxs[t].HookYaw = Convert.ToDecimal(ActionGfxHookYaw.Text);
             else if (n == 92) ecm.Actions[q].Gfxs[t].HookPitch = ActionGfxHookPitch.Text.ToInt32();
             else if (n == 93) ecm.Actions[q].Gfxs[t].HookRot = ActionGfxRot.Text.ToInt32();
-            else if (n == 94) ecm.Actions[q].Gfxs[t].GfxScale = ActionGfxScale.Text.ToDecimal();
-            else if (n == 95) ecm.Actions[q].Gfxs[t].GfxAlpha = ActionGfxAlpha.Text.ToDecimal();
-            else if (n == 96) ecm.Actions[q].Gfxs[t].GfxSpeed = ActionGfxSpeed.Text.ToDecimal();
+            else if (n == 94) ecm.Actions[q].Gfxs[t].GfxScale = Convert.ToDecimal(ActionGfxScale.Text);
+            else if (n == 95) ecm.Actions[q].Gfxs[t].GfxAlpha = Convert.ToDecimal(ActionGfxAlpha.Text);
+            else if (n == 96) ecm.Actions[q].Gfxs[t].GfxSpeed = Convert.ToDecimal(ActionGfxSpeed.Text);
             else if (n == 97) ecm.Actions[q].Gfxs[t].GfxOuterPath = ActionGfxOuterPath.Text.ToInt32();
             else if (n == 98) ecm.Actions[q].Gfxs[t].GfxRelToECM = ActionGfxRelToEcm.Text.ToInt32();
             else if (n == 99) ecm.Actions[q].Gfxs[t].CustomPath = ActionGfxCustomPath.Text.ToInt32();
@@ -1165,28 +1165,28 @@ namespace EcmFileEditor
             else if (n == 111) ecm.Actions[q].Sfx[t].Once = ActionSfxOnce.Text.ToInt32();
             else if (n == 112) ecm.Actions[q].Sfx[t].BindParent = ActionSfxBindParent.Text.ToInt32();
             else if (n == 113) ecm.Actions[q].Sfx[t].FadeOut = ActionSfxFadeOut.Text.ToInt32();
-            else if (n == 114) ecm.Actions[q].Sfx[t].HookOffset[0] = ActionSfxHookX.Text.ToDecimal();
-            else if (n == 115) ecm.Actions[q].Sfx[t].HookOffset[1] = ActionSfxHookY.Text.ToDecimal();
-            else if (n == 116) ecm.Actions[q].Sfx[t].HookOffset[2] = ActionSfxHookZ.Text.ToDecimal();
-            else if (n == 117) ecm.Actions[q].Sfx[t].HookYaw = ActionSfxYaw.Text.ToDecimal();
-            else if (n == 118) ecm.Actions[q].Sfx[t].HookPitch = ActionSfxPitch.Text.ToDecimal();
-            else if (n == 119) ecm.Actions[q].Sfx[t].HookRot = ActionSfxRot.Text.ToDecimal();
+            else if (n == 114) ecm.Actions[q].Sfx[t].HookOffset[0] = Convert.ToDecimal(ActionSfxHookX.Text);
+            else if (n == 115) ecm.Actions[q].Sfx[t].HookOffset[1] = Convert.ToDecimal(ActionSfxHookY.Text);
+            else if (n == 116) ecm.Actions[q].Sfx[t].HookOffset[2] = Convert.ToDecimal(ActionSfxHookZ.Text);
+            else if (n == 117) ecm.Actions[q].Sfx[t].HookYaw = Convert.ToDecimal(ActionSfxYaw.Text);
+            else if (n == 118) ecm.Actions[q].Sfx[t].HookPitch = Convert.ToDecimal(ActionSfxPitch.Text);
+            else if (n == 119) ecm.Actions[q].Sfx[t].HookRot = Convert.ToDecimal(ActionSfxRot.Text);
             else if (n == 120) ecm.Actions[q].Sfx[t].Force2D = ActionSfxForce2D.Text.ToInt32();
             else if (n == 121) ecm.Actions[q].Sfx[t].IsLoop = ActionSfxIsLoop.Text.ToInt32();
             else if (n == 122) ecm.Actions[q].Sfx[t].AbsoluteVolume = ActionSfxAbsoluteSound.Text.ToInt32();
             else if (n == 123) ecm.Actions[q].Sfx[t].Volume = ActionSfxVolume.Text.ToInt32();
             else if (n == 124) ecm.Actions[q].Sfx[t].VolMin = ActionSfxVolMin.Text.ToInt32();
             else if (n == 125) ecm.Actions[q].Sfx[t].VolMax = ActionSfxVolMax.Text.ToInt32();
-            else if (n == 126) ecm.Actions[q].Sfx[t].MinDist = ActionSfxMinDist.Text.ToDecimal();
-            else if (n == 127) ecm.Actions[q].Sfx[t].MaxDist = ActionSfxMaxDist.Text.ToDecimal();
+            else if (n == 126) ecm.Actions[q].Sfx[t].MinDist = Convert.ToDecimal(ActionSfxMinDist.Text);
+            else if (n == 127) ecm.Actions[q].Sfx[t].MaxDist = Convert.ToDecimal(ActionSfxMaxDist.Text);
             else if (n == 128) ecm.Actions[q].Sfx[t].CustomPath = ActionSfxCustomPath.Text.ToInt32();
             else if (n == 129) ecm.Actions[q].Sfx[t].CustomData = ActionSfxCustomData.Text.ToInt32();
-            else if (n == 130) ecm.Actions[q].Sfx[t].PitchMin = ActionSfxPitchMin.Text.ToDecimal();
-            else if (n == 131) ecm.Actions[q].Sfx[t].PitchMax = ActionSfxPitchMax.Text.ToDecimal();
+            else if (n == 130) ecm.Actions[q].Sfx[t].PitchMin = Convert.ToDecimal(ActionSfxPitchMin.Text);
+            else if (n == 131) ecm.Actions[q].Sfx[t].PitchMax = Convert.ToDecimal(ActionSfxPitchMax.Text);
             else if (n == 132) ecm.Actions[q].Sfx[t].UseModelAlpha = ActionSfxUseModelAlpha.Text.ToInt32();
             else if (n == 133) ecm.Actions[q].Sfx[t].FixSpeed = ActionSfxFixSpeed.Text.ToInt32();
             else if (n == 134) ecm.Actions[q].Sfx[t].SilentHeader = ActionSfxSilentHeader.Text.ToInt32();
-            else if (n == 135) ecm.Actions[q].Sfx[t].PercentStart = ActionSfxPercentStart.Text.ToDecimal();
+            else if (n == 135) ecm.Actions[q].Sfx[t].PercentStart = Convert.ToDecimal(ActionSfxPercentStart.Text);
             else if (n == 136) ecm.Actions[q].Sfx[t].Group = ActionSfxGroup.Text.ToInt32();
             else if (n == 137) ecm.Actions[q].Sfx[t].FxStartTime = ActionSfxFxStartTime.Text.ToInt32();
 
@@ -1234,25 +1234,25 @@ namespace EcmFileEditor
             switch (e.ColumnIndex)
             {
                 case 0:
-                    ecm.Actions[q].ChildActs[t].Positions[e.RowIndex].X = ActionChildSegments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().ToDecimal();
+                    ecm.Actions[q].ChildActs[t].Positions[e.RowIndex].X = Convert.ToDecimal(ActionChildSegments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
                     break;
                 case 1:
-                    ecm.Actions[q].ChildActs[t].Positions[e.RowIndex].Y = ActionChildSegments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().ToDecimal();
+                    ecm.Actions[q].ChildActs[t].Positions[e.RowIndex].Y = Convert.ToDecimal(ActionChildSegments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
                     break;
                 case 2:
-                    ecm.Actions[q].ChildActs[t].Positions[e.RowIndex].Z = ActionChildSegments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().ToDecimal();
+                    ecm.Actions[q].ChildActs[t].Positions[e.RowIndex].Z = Convert.ToDecimal(ActionChildSegments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
                     break;
                 case 3:
-                    ecm.Actions[q].ChildActs[t].Directions[e.RowIndex].X = ActionChildSegments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().ToDecimal();
+                    ecm.Actions[q].ChildActs[t].Directions[e.RowIndex].X = Convert.ToDecimal(ActionChildSegments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
                     break;
                 case 4:
-                    ecm.Actions[q].ChildActs[t].Directions[e.RowIndex].Y = ActionChildSegments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().ToDecimal();
+                    ecm.Actions[q].ChildActs[t].Directions[e.RowIndex].Y = Convert.ToDecimal(ActionChildSegments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
                     break;
                 case 5:
-                    ecm.Actions[q].ChildActs[t].Directions[e.RowIndex].Z = ActionChildSegments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().ToDecimal();
+                    ecm.Actions[q].ChildActs[t].Directions[e.RowIndex].Z = Convert.ToDecimal(ActionChildSegments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
                     break;
                 case 6:
-                    ecm.Actions[q].ChildActs[t].Directions[e.RowIndex].R = ActionChildSegments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().ToDecimal();
+                    ecm.Actions[q].ChildActs[t].Directions[e.RowIndex].R = Convert.ToDecimal(ActionChildSegments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
                     break;
             }
         }
@@ -1342,9 +1342,9 @@ namespace EcmFileEditor
             int l = Action107TypeScales.CurrentRow.Index;
             int n = Convert.ToInt32((sender as Control).Tag);
             if (n == 185) ecm.Actions[q].Type107s[t].Scales[l].Name = Action107TypeScaleName.Text;
-            else if (n == 186) ecm.Actions[q].Type107s[t].Scales[l].SclParam[0] = Action107TypeScaleParam1.Text.ToDecimal();
-            else if (n == 187) ecm.Actions[q].Type107s[t].Scales[l].SclParam[1] = Action107TypeScaleParam2.Text.ToDecimal();
-            else if (n == 188) ecm.Actions[q].Type107s[t].Scales[l].SclParam[2] = Action107TypeScaleParam3.Text.ToDecimal();
+            else if (n == 186) ecm.Actions[q].Type107s[t].Scales[l].SclParam[0] = Convert.ToDecimal(Action107TypeScaleParam1.Text);
+            else if (n == 187) ecm.Actions[q].Type107s[t].Scales[l].SclParam[1] = Convert.ToDecimal(Action107TypeScaleParam2.Text);
+            else if (n == 188) ecm.Actions[q].Type107s[t].Scales[l].SclParam[2] = Convert.ToDecimal(Action107TypeScaleParam3.Text);
         }
         private void Action107TypeScaleDests_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
@@ -1356,13 +1356,13 @@ namespace EcmFileEditor
             switch (e.ColumnIndex)
             {
                 case 0:
-                    ecm.Actions[q].Type107s[t].Scales[l].SclDest[e.RowIndex][0] = Action107TypeScaleDests.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().ToDecimal();
+                    ecm.Actions[q].Type107s[t].Scales[l].SclDest[e.RowIndex][0] = Convert.ToDecimal(Action107TypeScaleDests.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
                     break;
                 case 1:
-                    ecm.Actions[q].Type107s[t].Scales[l].SclDest[e.RowIndex][1] = Action107TypeScaleDests.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().ToDecimal();
+                    ecm.Actions[q].Type107s[t].Scales[l].SclDest[e.RowIndex][1] = Convert.ToDecimal(Action107TypeScaleDests.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
                     break;
                 case 2:
-                    ecm.Actions[q].Type107s[t].Scales[l].SclDest[e.RowIndex][2] = Action107TypeScaleDests.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString().ToDecimal();
+                    ecm.Actions[q].Type107s[t].Scales[l].SclDest[e.RowIndex][2] = Convert.ToDecimal(Action107TypeScaleDests.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString());
                     break;
             }
         }
